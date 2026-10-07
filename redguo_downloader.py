@@ -274,7 +274,15 @@ def download_episode(series: dict, index: int, out_dir: str, quality: int, ffmpe
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="RedGuo/红果短剧 downloader")
+    # RedGuo episode names are Chinese; make console output Unicode-safe on
+    # Windows consoles that default to a legacy code page.
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:  # noqa: BLE001
+            pass
+
+    ap = argparse.ArgumentParser(description="RedGuo (Hongguo) short-drama downloader")
     ap.add_argument("url", help="hongguoduanju detail/player URL or series_id")
     ap.add_argument("--output", default=os.path.join(SCRIPT_DIR, "downloads"))
     ap.add_argument("--workers", type=int, default=3)
