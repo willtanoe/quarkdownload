@@ -1,0 +1,16 @@
+# Normalize line endings across platforms.
+* text=auto
+
+# Explicitly treat these as text.
+*.py   text
+*.md   text
+*.txt  text
+
+# Common binary types (kept as-is).
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.ico  binary
+*.zip  binary
+*.gz   binary
+*.exe  binary
